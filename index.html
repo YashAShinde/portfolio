@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yash Shinde — Mechanical Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0B0F1A;
+      --white:#111827;
+      --ink:#F5F7FA;
+      --accent:#3B82F6;
+      --accent2:#60A5FA;
+      --gold:#FBBF24;
+      --muted:#8892A4;
+      --border:#1E293B;
+      --light:#1A2235;
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'Inter',system-ui,sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(11,15,26,0.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 3.5rem;
+    }
+    .nav-brand{font-family:var(--serif);font-size:1.1rem;color:var(--accent);text-decoration:none;font-weight:700}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{font-size:0.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-btn{
+      background:var(--accent);color:#fff;padding:0.5rem 1.25rem;
+      border-radius:4px;font-size:0.8rem;font-weight:500;text-decoration:none;
+      transition:background 0.2s;letter-spacing:0.03em;
+    }
+    .nav-btn:hover{background:var(--accent2)}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;
+      padding:7rem 3.5rem 4rem;
+      background:linear-gradient(135deg,#0D1829 0%,#0B0F1A 60%);
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;right:-80px;top:-80px;
+      width:500px;height:500px;border-radius:50%;
+      background:radial-gradient(circle,rgba(27,79,114,0.07) 0%,transparent 70%);
+    }
+    .hero::after{
+      content:'';position:absolute;right:5%;top:15%;
+      width:320px;height:320px;border-radius:50%;
+      border:1px solid rgba(27,79,114,0.1);
+    }
+    .hero-inner{display:grid;grid-template-columns:1fr auto;gap:5rem;align-items:center;width:100%;max-width:1100px;position:relative;z-index:1}
+    .hero-tag{
+      display:inline-flex;align-items:center;gap:0.5rem;
+      font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+      color:var(--accent);background:rgba(27,79,114,0.08);
+      border:1px solid rgba(27,79,114,0.15);border-radius:100px;
+      padding:0.3rem 0.9rem;margin-bottom:1.5rem;
+    }
+    .hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    h1{font-family:var(--serif);font-size:clamp(2.8rem,4.5vw,4rem);line-height:1.08;letter-spacing:-0.01em;color:var(--ink);margin-bottom:0.5rem}
+    h1 span{color:var(--accent)}
+    .hero-role{font-size:1.1rem;font-weight:300;color:var(--muted);margin-bottom:1.5rem}
+    .hero-desc{font-size:0.9625rem;font-weight:300;color:var(--muted);max-width:50ch;line-height:1.8;margin-bottom:2.5rem}
+    .hero-desc strong{color:var(--ink);font-weight:500}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-primary{background:var(--accent);color:#fff;padding:0.8rem 1.75rem;border-radius:4px;font-size:0.85rem;font-weight:500;text-decoration:none;transition:background 0.2s,transform 0.15s;letter-spacing:0.03em}
+    .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+    .btn-outline{border:1.5px solid var(--accent);color:var(--accent);padding:0.8rem 1.75rem;border-radius:4px;font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s;letter-spacing:0.03em}
+    .btn-outline:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+    .hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border);flex-wrap:wrap}
+    .stat-num{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--accent)}
+    .stat-label{font-size:0.75rem;color:var(--muted);letter-spacing:0.04em;margin-top:0.1rem}
+    .hero-card{
+      background:#111827;border:1px solid var(--border);border-radius:12px;
+      padding:2rem 1.75rem;min-width:220px;
+      box-shadow:0 4px 24px rgba(0,0,0,0.3);
+    }
+    .hero-card-title{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+    .hero-card-items{display:flex;flex-direction:column;gap:0.75rem}
+    .hci{display:flex;align-items:center;gap:0.75rem;font-size:0.82rem;color:var(--ink);font-weight:400}
+    .hci-dot{width:8px;height:8px;border-radius:2px;background:var(--accent);flex-shrink:0}
+    .hci-dot.gold{background:var(--gold)}
+    .hci-dot.blue{background:var(--accent2)}
+
+    /* SECTIONS */
+    .section{padding:5rem 3.5rem}
+    .section-alt{background:#0F1623}
+    .section-blue{background:#1E3A5F;color:#fff}
+    .sec-label{
+      font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+      color:var(--accent);display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;
+    }
+    .sec-label::before{content:'';width:2rem;height:2px;background:var(--accent);border-radius:2px}
+    .section-blue .sec-label{color:rgba(255,255,255,0.6)}
+    .section-blue .sec-label::before{background:rgba(255,255,255,0.4)}
+    .sec-heading{font-family:var(--serif);font-size:clamp(1.75rem,2.8vw,2.4rem);font-weight:700;line-height:1.15;letter-spacing:-0.01em;margin-bottom:0.75rem}
+    .sec-sub{font-size:0.9375rem;font-weight:300;color:var(--muted);max-width:55ch;line-height:1.75;margin-bottom:3rem}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start}
+    .about-p{font-size:0.9375rem;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:1rem}
+    .about-p strong{color:var(--ink);font-weight:500}
+    .about-highlights{display:flex;flex-direction:column;gap:1rem}
+    .hl-card{
+      background:#1A2235;border-left:3px solid var(--accent);
+      border-radius:0 6px 6px 0;padding:1.1rem 1.25rem;
+      transition:border-color 0.2s,background 0.2s;
+    }
+    .hl-card:hover{border-color:var(--accent2);background:#1E293B}
+    .hl-title{font-size:0.875rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem}
+    .hl-desc{font-size:0.8rem;color:var(--muted);line-height:1.55}
+
+    /* EXPERIENCE */
+    .exp-timeline{display:flex;flex-direction:column;gap:0;position:relative}
+    .exp-timeline::before{content:'';position:absolute;left:160px;top:0;bottom:0;width:1px;background:var(--border)}
+    .exp-item{display:grid;grid-template-columns:160px 1fr;gap:2.5rem;padding:2rem 0;border-bottom:1px solid var(--border)}
+    .exp-item:first-child{padding-top:0}
+    .exp-date{font-size:0.75rem;font-weight:500;color:var(--muted);letter-spacing:0.04em;padding-top:0.25rem;text-align:right;padding-right:2rem}
+    .exp-dot{
+      position:absolute;left:155px;width:11px;height:11px;
+      border-radius:50%;background:var(--accent);border:2px solid var(--bg);
+      margin-top:0.35rem;
+    }
+    .exp-body{position:relative}
+    .exp-company{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.3rem}
+    .exp-role{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.75rem;font-family:var(--serif)}
+    .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+    .exp-bullets li{font-size:0.875rem;color:var(--muted);font-weight:300;padding-left:1rem;position:relative;line-height:1.6}
+    .exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.65rem;top:0.25rem}
+
+    /* PROJECTS */
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+    .proj-card{
+      background:#111827;border:1px solid var(--border);border-radius:10px;
+      padding:1.75rem;transition:box-shadow 0.25s,transform 0.25s;position:relative;overflow:hidden;
+    }
+    .proj-card::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      transform:scaleX(0);transform-origin:left;transition:transform 0.35s;
+    }
+    .proj-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.35);transform:translateY(-3px)}
+    .proj-card:hover::after{transform:scaleX(1)}
+    .proj-type{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.9rem}
+    .proj-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.6rem;line-height:1.3}
+    .proj-role{font-size:0.78rem;font-weight:500;color:var(--gold);margin-bottom:0.75rem;letter-spacing:0.02em}
+    .proj-desc{font-size:0.845rem;color:var(--muted);line-height:1.65;font-weight:300;margin-bottom:1.25rem}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+    .ptag{font-size:0.68rem;padding:0.25rem 0.65rem;border-radius:4px;background:var(--light);color:var(--accent);border:1px solid var(--border);font-weight:500;letter-spacing:0.03em}
+
+    /* SKILLS */
+    .skills-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
+    .sk-card{background:#111827;border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color 0.2s}
+    .sk-card:hover{border-color:var(--accent2)}
+    .sk-head{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.1rem}
+    .sk-icon{font-size:1.25rem}
+    .sk-cat{font-size:0.875rem;font-weight:600;color:var(--ink)}
+    .sk-chips{display:flex;flex-wrap:wrap;gap:0.4rem}
+    .chip{font-size:0.75rem;padding:0.3rem 0.7rem;border-radius:100px;background:var(--light);color:var(--muted);border:1px solid var(--border);font-weight:400;transition:all 0.2s}
+    .chip:hover{background:rgba(59,130,246,0.15);color:var(--accent2);border-color:rgba(59,130,246,0.3)}
+
+    /* ACHIEVEMENTS */
+    .ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+    .ach-card{
+      background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+      border-radius:10px;padding:1.25rem 1.5rem;
+      display:flex;align-items:flex-start;gap:1rem;
+      transition:background 0.2s;
+    }
+    .ach-card:hover{background:rgba(255,255,255,0.13)}
+    .ach-icon{font-size:1.3rem;flex-shrink:0}
+    .ach-text{font-size:0.875rem;color:rgba(255,255,255,0.85);line-height:1.55;font-weight:300}
+    .ach-text strong{color:#fff;display:block;font-weight:600;margin-bottom:0.15rem}
+
+    /* CERTS */
+    .cert-wrap{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:2.5rem}
+    .cert{
+      display:flex;align-items:center;gap:0.5rem;
+      font-size:0.8rem;font-weight:500;padding:0.5rem 1rem;border-radius:6px;
+      background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+      color:rgba(255,255,255,0.9);transition:background 0.2s;
+    }
+    .cert:hover{background:rgba(255,255,255,0.18)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .contact-info{display:flex;flex-direction:column;gap:1rem;margin-top:0.5rem}
+    .c-row{display:flex;align-items:center;gap:1rem;font-size:0.9rem;color:var(--muted)}
+    .c-icon{width:38px;height:38px;border-radius:8px;background:var(--light);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .c-row a{color:var(--accent);text-decoration:none;transition:color 0.2s}
+    .c-row a:hover{color:var(--accent2)}
+    .c-form{display:flex;flex-direction:column;gap:1rem}
+    .f-field{display:flex;flex-direction:column;gap:0.35rem}
+    .f-field label{font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+    .f-field input,.f-field textarea{background:#1E293B;border:1px solid var(--border);border-radius:6px;padding:0.7rem 0.9rem;font-family:var(--sans);font-size:0.875rem;color:var(--ink);outline:none;transition:border-color 0.2s;resize:none}
+    .f-field input:focus,.f-field textarea:focus{border-color:var(--accent)}
+    .f-field textarea{min-height:100px}
+    .btn-send{background:var(--accent);color:#fff;border:none;padding:0.85rem 1.75rem;border-radius:4px;font-family:var(--sans);font-size:0.875rem;font-weight:500;cursor:pointer;letter-spacing:0.03em;transition:background 0.2s,transform 0.15s;align-self:flex-start}
+    .btn-send:hover{background:var(--accent2);transform:translateY(-1px)}
+
+    /* FOOTER */
+    footer{padding:2rem 3.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:#0F1623}
+    footer p{font-size:0.78rem;color:var(--muted)}
+    .f-links{display:flex;gap:1.5rem;list-style:none}
+    .f-links a{font-size:0.75rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .f-links a:hover{color:var(--accent)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      nav{padding:1rem 1.5rem}.nav-links{display:none}
+      .hero{padding:5rem 1.5rem 3rem}.hero-inner{grid-template-columns:1fr;gap:2rem}.hero-card{display:none}
+      .section{padding:3.5rem 1.5rem}
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
+      .exp-timeline::before{left:0}.exp-item{grid-template-columns:1fr;gap:0.5rem}.exp-date{text-align:left;padding-right:0}
+      .exp-dot{display:none}
+      footer{flex-direction:column;gap:1rem;padding:1.5rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Yash Shinde</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:yashshinde8085@gmail.com" class="nav-btn">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>Open to Opportunities · Nashik, Maharashtra</div>
+      <h1>Yash <span>Shinde</span></h1>
+      <p class="hero-role">Mechanical Engineer · CAD Specialist · Automation Enthusiast</p>
+      <p class="hero-desc">
+        Final-year <strong>B.Tech Mechanical Engineering</strong> student at K.K. Wagh Institute with hands-on experience at <strong>BOSCH</strong> and <strong>Synergy Stampings</strong>. Skilled in CAD/CAM, robotics, embedded systems, and lean manufacturing.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="https://www.linkedin.com/in/yashshinde-47091525a" target="_blank" class="btn-outline">LinkedIn ↗</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">2+</div><div class="stat-label">Internships</div></div>
+        <div><div class="stat-num">3+</div><div class="stat-label">Projects</div></div>
+        <div><div class="stat-num">AIR 1</div><div class="stat-label">Edgeline Championship</div></div>
+        <div><div class="stat-num">7.03</div><div class="stat-label">CGPA</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-title">Core Expertise</div>
+      <div class="hero-card-items">
+        <div class="hci"><div class="hci-dot"></div>SolidWorks · CATIA · Fusion 360</div>
+        <div class="hci"><div class="hci-dot blue"></div>ANSYS Simulation & Analysis</div>
+        <div class="hci"><div class="hci-dot gold"></div>PLC-SCADA · Industrial Automation</div>
+        <div class="hci"><div class="hci-dot"></div>Embedded C · Arduino</div>
+        <div class="hci"><div class="hci-dot blue"></div>Lean Manufacturing · 5S · Kaizen</div>
+        <div class="hci"><div class="hci-dot gold"></div>3D Printing · Laser Cutting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="sec-label">About Me</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="sec-heading">Engineering solutions that are precise, practical, and built to last.</h2>
+      <p class="about-p" style="margin-top:1.25rem">I'm a mechanical engineering student with a strong foundation in <strong>CAD design, structural analysis, and industrial automation</strong>. My experience spans aerospace-grade manufacturing at <strong>BOSCH</strong>, lean process improvement at <strong>Synergy Stampings</strong>, and cutting-edge robotics through the <strong>Altar Global Student Program</strong>.</p>
+      <p class="about-p">I thrive at the intersection of design and systems thinking — whether I'm optimizing a robot's frame for weight reduction, designing a refrigeration system for -80°C, or programming an autonomous floor cleaner from scratch.</p>
+      <p class="about-p">Outside the lab, I race go-karts competitively and lead engineering teams — combining precision, strategy, and teamwork in every challenge I take on.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="hl-card">
+        <div class="hl-title">🔧 CAD & Design</div>
+        <div class="hl-desc">SolidWorks, CATIA, Fusion 360, AutoCAD, BricsCAD — end-to-end 3D modeling and drafting</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-title">⚙️ Industrial Automation</div>
+        <div class="hl-desc">PLC-SCADA, Industrial Automation Course (2025) — applying automation to real manufacturing floors</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-title">🤖 Robotics & Embedded</div>
+        <div class="hl-desc">Arduino, Embedded C, Sensor Integration — building autonomous systems from ground up</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-title">🏎️ Competitive Edge</div>
+        <div class="hl-desc">AIR 1 Edgeline Championship · AIR 5 Indian Karting Race — performing under pressure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="sec-label">Experience</div>
+  <h2 class="sec-heading">Where I've worked.</h2>
+  <div class="exp-timeline" style="margin-top:2rem">
+    <div class="exp-item reveal">
+      <div class="exp-date">Jul 2025 – Dec 2025</div>
+      <div class="exp-body">
+        <div class="exp-dot"></div>
+        <div class="exp-company">BOSCH</div>
+        <div class="exp-role">Engineering Intern</div>
+        <ul class="exp-bullets">
+          <li>Worked on Oil Patch Analysis, Grinding Defect Reduction, and Inventory Reduction projects to improve manufacturing efficiency and quality</li>
+          <li>Applied structured problem-solving methodologies in a world-class manufacturing environment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Nov 2024 – Dec 2024</div>
+      <div class="exp-body">
+        <div class="exp-dot"></div>
+        <div class="exp-company">Synergy Stampings</div>
+        <div class="exp-role">Manufacturing Intern</div>
+        <ul class="exp-bullets">
+          <li>Applied lean manufacturing techniques such as 5S and Kaizen to improve workplace organization, efficiency, and safety</li>
+          <li>Conducted productivity analysis and contributed to measurable process improvements on the shop floor</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Ongoing</div>
+      <div class="exp-body">
+        <div class="exp-dot"></div>
+        <div class="exp-company">Team Nemesis Karting</div>
+        <div class="exp-role">Engine & Transmission Co-Head · CAD Member · Brake System Lead · Cost Member</div>
+        <ul class="exp-bullets">
+          <li>Leading engine, transmission, and brake system design for competitive karting team</li>
+          <li>Managing CAD modeling and cost analysis across all vehicle subsystems</li>
+          <li>Participated in in-house workshop focused on the design, fabrication, and testing of go-karts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section section-alt" id="projects">
+  <div class="sec-label">Projects</div>
+  <h2 class="sec-heading">Things I've designed & built.</h2>
+  <p class="sec-sub">From quadruped robots to ultra-low temperature refrigeration systems.</p>
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <div class="proj-type">HVAC · Thermal Engineering · Ongoing</div>
+      <div class="proj-title">Ultra-Low Temperature Refrigeration System</div>
+      <div class="proj-role">System Designer</div>
+      <div class="proj-desc">Designing a refrigeration system capable of achieving temperatures down to -80°C, with full cooling load calculation, heat transfer analysis, and evaporator design.</div>
+      <div class="proj-tags">
+        <span class="ptag">HVAC Design</span><span class="ptag">Heat Transfer</span><span class="ptag">Cooling Load Calc</span><span class="ptag">Evaporator Design</span>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-type">Robotics · CAD · Mar 2025</div>
+      <div class="proj-title">Optimization of Quadruped Robot</div>
+      <div class="proj-role">CAD & Structural Analyst — Altar Global Student Program</div>
+      <div class="proj-desc">Optimized a robot dog design through CAD modeling, precise assembly, and structural analysis to reduce overall weight and improve mechanical efficiency.</div>
+      <div class="proj-tags">
+        <span class="ptag">SolidWorks</span><span class="ptag">Assembly</span><span class="ptag">Structural Analysis</span><span class="ptag">Weight Optimization</span>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-type">Embedded Systems · Dec 2022</div>
+      <div class="proj-title">Autonomous Floor Cleaner</div>
+      <div class="proj-role">Embedded Systems Developer</div>
+      <div class="proj-desc">Developed an autonomous navigation and obstacle detection system using ultrasonic sensors and motor control — fully programmed and integrated from scratch.</div>
+      <div class="proj-tags">
+        <span class="ptag">Embedded C</span><span class="ptag">Arduino</span><span class="ptag">Sensor Integration</span><span class="ptag">Motor Control</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="sec-label">Skills</div>
+  <h2 class="sec-heading">Technical toolkit.</h2>
+  <div class="skills-wrap" style="margin-top:2rem">
+    <div class="sk-card reveal">
+      <div class="sk-head"><span class="sk-icon">📐</span><span class="sk-cat">CAD Software</span></div>
+      <div class="sk-chips"><span class="chip">SolidWorks</span><span class="chip">CATIA</span><span class="chip">Fusion 360</span><span class="chip">AutoCAD</span><span class="chip">BricsCAD</span></div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-head"><span class="sk-icon">🔬</span><span class="sk-cat">Analysis</span></div>
+      <div class="sk-chips"><span class="chip">ANSYS</span><span class="chip">Structural Analysis</span><span class="chip">FEA</span><span class="chip">Thermal Analysis</span></div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-head"><span class="sk-icon">⚙️</span><span class="sk-cat">Automation & Embedded</span></div>
+      <div class="sk-chips"><span class="chip">PLC-SCADA</span><span class="chip">Embedded C</span><span class="chip">Arduino</span><span class="chip">Sensor Integration</span><span class="chip">Motor Control</span></div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-head"><span class="sk-icon">🏭</span><span class="sk-cat">Manufacturing</span></div>
+      <div class="sk-chips"><span class="chip">3D Printing</span><span class="chip">Laser Cutting</span><span class="chip">Lathe</span><span class="chip">MIG/TIG Welding</span><span class="chip">5S</span><span class="chip">Kaizen</span></div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-head"><span class="sk-icon">🎨</span><span class="sk-cat">Design & Visualisation</span></div>
+      <div class="sk-chips"><span class="chip">KeyShot</span><span class="chip">Product Rendering</span><span class="chip">Technical Drawing</span></div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-head"><span class="sk-icon">💼</span><span class="sk-cat">Office & OS</span></div>
+      <div class="sk-chips"><span class="chip">Excel</span><span class="chip">PowerPoint</span><span class="chip">Word</span><span class="chip">Windows</span><span class="chip">Linux</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="section section-blue" id="achievements">
+  <div class="sec-label">Achievements & Certifications</div>
+  <h2 class="sec-heading" style="color:#fff">Recognition & milestones.</h2>
+  <div class="ach-grid" style="margin-top:2rem">
+    <div class="ach-card reveal">
+      <div class="ach-icon">🥇</div>
+      <div class="ach-text"><strong>AIR 1 — Edgeline Championship 2025</strong>Ranked 1st nationally in the Edgeline engineering championship</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🏎️</div>
+      <div class="ach-text"><strong>AIR 5 — Indian Karting Race 2025</strong>Top 5 finish at the Indian Karting Race national event</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">📐</div>
+      <div class="ach-text"><strong>CAD-WAR Competition 2025</strong>Competed in the CAD-WAR national competition at KKWIEER</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🚀</div>
+      <div class="ach-text"><strong>Bhartiya Antarish Hackathon 2025</strong>Participated in Hack2Skill's national space hackathon</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🏭</div>
+      <div class="ach-text"><strong>AICTE-IDEA Lab — Smart Manufacturing 2022</strong>Exposure to smart manufacturing and machine tools at IDEA Lab</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🔬</div>
+      <div class="ach-text"><strong>Design Thinking & IDEA Lab Exhibition 2024</strong>Presented project at the IDEA Lab project exhibition</div>
+    </div>
+  </div>
+  <div style="margin-top:3rem">
+    <div class="sec-label" style="margin-bottom:1.25rem">Certifications</div>
+    <div class="cert-wrap">
+      <div class="cert">🏭 Industrial Automation Course (2025)</div>
+      <div class="cert">⚡ PLC-SCADA (Mar 2024)</div>
+      <div class="cert">🧠 Design Thinking & Idea Lab (2024)</div>
+      <div class="cert">🏎️ Go-Kart Fabrication & Testing Workshop</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="sec-label">Contact</div>
+  <div class="contact-grid">
+    <div>
+      <h2 class="sec-heading">Let's work on something great together.</h2>
+      <p class="sec-sub">I'm looking for internships and full-time roles in Mechanical Engineering, CAD Design, or Industrial Automation. Feel free to reach out.</p>
+      <div class="contact-info">
+        <div class="c-row"><div class="c-icon">📧</div><a href="mailto:yashshinde8085@gmail.com">yashshinde8085@gmail.com</a></div>
+        <div class="c-row"><div class="c-icon">💼</div><a href="https://www.linkedin.com/in/yashshinde-47091525a" target="_blank">linkedin.com/in/yashshinde-47091525a</a></div>
+        <div class="c-row"><div class="c-icon">📍</div><span>Nashik, Maharashtra, India</span></div>
+      </div>
+    </div>
+    <form class="c-form" onsubmit="handleSubmit(event)">
+      <div class="f-field"><label for="yn">Name</label><input type="text" id="yn" placeholder="Your name" required/></div>
+      <div class="f-field"><label for="ye">Email</label><input type="email" id="ye" placeholder="your@email.com" required/></div>
+      <div class="f-field"><label for="ym">Message</label><textarea id="ym" placeholder="Tell me about the opportunity…" required></textarea></div>
+      <button type="submit" class="btn-send">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Yash Shinde · Mechanical Engineer</p>
+  <ul class="f-links">
+    <li><a href="https://www.linkedin.com/in/yashshinde-47091525a" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:yashshinde8085@gmail.com">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.btn-send');
+  btn.textContent='Sent ✓';btn.style.background='#1a7a4a';
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset();},3000);
+}
+</script>
+</body>
+</html>
